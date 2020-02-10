@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="application.scss">
+      <title>Bookers2</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <span class="bookers">Bookers</span>
+        </nav>
+
+        <nav>
+         <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+                  <%= link_to user_path(current_user.id) do %>
+                    <p class="glyphicon glyphicon-home home"> Home</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to users_path do %>
+                    <p class="glyphicon glyphicon-link about"> Users</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to books_path do %>
+                    <p class="glyphicon glyphicon-book books"> Books</p>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                     <p class="glyphicon glyphicon-log-out logout"> logout</p>
+                  <% end %>
+                 </li>
+            </ul>
+          <% else %>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <%= link_to root_path do %>
+                <p class="glyphicon glyphicon-home home"> Home</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path do %>
+                <p class="glyphicon glyphicon-link about"> About</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <p class="glyphicon glyphicon-book books"> sign up</p>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path do %>
+                <p class="glyphicon glyphicon-log-out logout"> login</p>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+
+     </nav>
+    </div>
+   </header>
+
+<%= yield %>
+<footer>
+   <div class="container"></div>
+   <div class="row"></div>
+   <div class="col-xs-3 col-xs-offset-9">
+     <p>CopyRight Infratop.inc</p>
+   </div>
+</footer>
+
+
+  </body>
+</html>
